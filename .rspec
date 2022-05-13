@@ -1,0 +1,2 @@
+--require spec_helper
+--format documentation #テストを通過した文言も表示
