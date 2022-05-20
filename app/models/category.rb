@@ -10,6 +10,6 @@
 class Category < ApplicationRecord
   has_many :products, dependent: :destroy
   with_options presence: true do
-    validates :name, unique: true
+    validates :name, uniqueness: true
   end
 end
