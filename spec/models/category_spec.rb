@@ -3,7 +3,7 @@
 # Table name: categories
 #
 #  id         :bigint           not null, primary key
-#  name       :string(255)
+#  name       :string(255)      not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -36,7 +36,8 @@ RSpec.describe Category, type: :model do
         another_category = FactoryBot.build(:category) 
         another_category.name = @category.name
         another_category.valid?
-        expect(another_category.errors.full_messages).to include("このカテゴリーはすでに存在します")
+        # expect(another_category.errors.full_messages).to include("このカテゴリーはすでに存在します")
+        expect(another_category.errors.full_messages).to include("Name has already been taken")
       end
     end
 
