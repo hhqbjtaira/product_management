@@ -8,6 +8,7 @@
 #  updated_at :datetime         not null
 #
 class Category < ApplicationRecord
+  has_many :products_id, dependent: :destroy
   with_options presence: true do
     validates :name, uniqueness: true
   end
