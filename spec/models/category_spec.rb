@@ -13,11 +13,12 @@ RSpec.describe Category, type: :model do
   describe 'バリデーションのテスト' do
     # factoriesで作成したダミーデータを使用します。
     let(:category) { FactoryBot.create(:category) }
+    # let!(:product) { build(:product, category_id: category.id) }
 
     # test_categoryを作成し、空欄での登録ができるか確認します。
     subject { test_category.valid? }
     let(:test_category) { category }
-
+    
     context 'nameカラム' do
       it '空欄でないこと' do
         test_category.name = ''
@@ -35,6 +36,7 @@ RSpec.describe Category, type: :model do
         another_category = FactoryBot.build(:category) 
         another_category.name = @category.name
         another_category.valid?
+        # expect(another_category.errors.full_messages).to include("このカテゴリーはすでに存在します")
         expect(another_category.errors.full_messages).to include("Name has already been taken")
       end
     end
